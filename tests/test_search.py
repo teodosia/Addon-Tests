@@ -134,6 +134,7 @@ class TestSearch:
 
         Assert.equal(search_page.result(0).name, 'Firebug')
 
+    @xfail(reason="Disabled until bug 723933 is fixed.")
     @nondestructive
     def test_that_searching_for_cool_returns_results_with_cool_in_their_name_description(self, mozwebqa):
         """
