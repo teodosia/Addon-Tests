@@ -144,7 +144,12 @@ class TestSearch:
         search_page = home_page.header.search_for('Cool')
 
         for i in range(10):
-            Assert.contains('cool', search_page.result(i).text.lower())
+            try:
+                Assert.contains('cool', search_page.result(i).text.lower())
+            except:
+                details_page = search_page.result(i).click_result()
+                Assert.contains('cool', details_page.description.lower())
+                details_page.return_to_previous_page()
 
     @nondestructive
     def test_that_searching_with_numerals_returns_results(self, mozwebqa):
